@@ -1,4 +1,4 @@
-# Music Stats v1.00. Build with: docker build -t jason4bury/music-stats:1.00 .
+# Music Stats v1.01. Build with: docker build -t jason4bury/music-stats:1.01 .
 # Node.js is pinned to an exact version so every build is the same; bump it here on purpose.
 ARG NODE_IMAGE=node:22.23.4-bookworm-slim
 
@@ -13,7 +13,7 @@ RUN npm ci --omit=dev
 FROM ${NODE_IMAGE}
 LABEL org.opencontainers.image.title="Music Stats" \
       org.opencontainers.image.description="Your music collection in numbers: decades, genres, artists, albums and formats, read from the tags" \
-      org.opencontainers.image.version="1.00" \
+      org.opencontainers.image.version="1.01" \
       org.opencontainers.image.source="https://github.com/jason4bury/Music-Stats" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.authors="Jason Rhodes"

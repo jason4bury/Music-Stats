@@ -6,7 +6,7 @@
 
 Your music collection in numbers: decades, years, genres, artists, albums and formats, read from your music's tags and run in Docker.
 
-![Version](https://img.shields.io/badge/version-v1.00-blue)
+![Version](https://img.shields.io/badge/version-v1.01-blue)
 ![Platform](https://img.shields.io/badge/platform-Docker-2496ED?logo=docker&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=nodedotjs&logoColor=white)
 ![Licence](https://img.shields.io/badge/licence-MIT-green)

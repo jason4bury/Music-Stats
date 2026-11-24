@@ -6,6 +6,12 @@ v<major>.<minor> (two-digit minor) to match the Git tags and Docker image tags.
 
 ## [Unreleased]
 
+## [1.01] - 2026-11-24
+
+### Changed
+- Help now covers Show files in Missing tags (and Show folders for artist pictures), clicking a
+  letter in Artists A to Z, and the Track lengths chart.
+
 ## [1.00] - 2026-11-24
 
 ### Added
