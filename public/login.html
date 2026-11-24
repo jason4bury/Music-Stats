@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/styles.css">
+<title>Sign in - Music Stats</title>
+<script>try { const t = localStorage.getItem('ms-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch { /* no storage */ }</script>
+</head>
+<body class="login-body">
+  <form class="login-card" id="loginForm">
+    <img class="logo" src="/apple-touch-icon.png" alt="">
+    <h1>Music Stats</h1>
+    <p>Sign in to see your music in numbers.</p>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" required>
+    <button class="btn primary" type="submit">Sign in</button>
+    <div class="error" id="error" role="alert"></div>
+  </form>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById('error');
+    errorEl.textContent = '';
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: document.getElementById('username').value, password: document.getElementById('password').value }),
+      });
+      if (res.ok) { window.location.href = '/'; return; }
+      const data = await res.json().catch(() => ({}));
+      errorEl.textContent = data.error || 'Sign in failed.';
+    } catch {
+      errorEl.textContent = 'Could not reach the server.';
+    }
+  });
+</script>
+</body>
+</html>

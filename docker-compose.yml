@@ -1,0 +1,32 @@
+# Music Stats
+# 1. Copy .env.example to .env next to this file and fill in your music folder and the sign-in settings.
+# 3. Run: docker compose up -d   then open http://<your-server>:3050
+# 4. Pick which folders to read in Settings on the page (each folder mounted here is read at first).
+services:
+
+  music-stats:
+    image: jason4bury/music-stats:latest
+    container_name: music-stats
+    # App settings (sign-in, scan interval) come from .env.
+    env_file:
+      - .env
+    # Fixed container-side values. These override anything with the same name in .env.
+    environment:
+      PORT: 3050
+      DATA_DIR: /data
+    volumes:
+      # The cache of tags, in a Docker volume. To keep it in a folder instead, replace
+      # music-stats-data with a path such as D:/Docker/music-stats.
+      - music-stats-data:/data
+      # Your music, read-only: the app never writes to it. The folders are set in .env (MUSIC_FOLDER),
+      # and Settings on the page can pick any folder inside them.
+      - ${MUSIC_FOLDER:?Set MUSIC_FOLDER in .env to your music folder}:/music/Music:ro
+      # Music somewhere else too (such as soundtracks)? Set MUSIC_FOLDER_2 in .env and remove the # below.
+      # - ${MUSIC_FOLDER_2}:/music/More:ro
+    ports:
+      # Change the first number to use a different port on the host.
+      - "3050:3050"
+    restart: unless-stopped
+
+volumes:
+  music-stats-data:
